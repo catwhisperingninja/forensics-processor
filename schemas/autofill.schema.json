@@ -1,0 +1,27 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://example.org/schemas/autofill.schema.json",
+	"title": "Autofill Artifact",
+	"type": "object",
+	"properties": {
+		"source": { "type": "string", "minLength": 1 },
+		"timestamp": { "type": "string", "format": "date-time" },
+		"artifact_type": {
+			"type": "string",
+			"enum": ["autofill", "login", "password", "note"]
+		},
+		"profile": { "type": "string" },
+		"browser": {
+			"type": "string",
+			"enum": ["chrome", "edge", "firefox", "safari", "unknown"]
+		},
+		"fields": {
+			"type": "object",
+			"additionalProperties": {
+				"type": ["string", "number", "boolean", "null"]
+			}
+		}
+	},
+	"required": ["source", "timestamp", "artifact_type"],
+	"additionalProperties": true
+}
